@@ -23,4 +23,14 @@ return start.getLerped(end, time);}
     LERP_COLOR(ofFloatColor)
     LERP_COLOR(ofShortColor)
 #undef LERP_COLOR
+
+#define LERP_COLOR_PROPERTY(TYPE)\
+template<>\
+inline TYPE lerpT(const TYPE & start, const TYPE & end, float time){\
+return start.get().getLerped(end.get(), time);}
+    LERP_COLOR_PROPERTY(ofParameter<ofColor>)
+    LERP_COLOR_PROPERTY(ofParameter<ofFloatColor>)
+    LERP_COLOR_PROPERTY(ofParameter<ofShortColor>)
+#undef LERP_COLOR_PROPERTY
+
 } // namespace choreograph
